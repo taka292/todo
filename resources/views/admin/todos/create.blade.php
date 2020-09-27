@@ -36,11 +36,18 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2">優先度</label>
+                    {{-- <select> --}}
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="priority" value="{{ old('priority') }}">
+                        <select class="form-control" name="priority">
+                            <option value="1" selected>1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4" selected>4</option>
+                            <option value="5" selected>5</option>
+                            <option value="" selected>選択してください</option>
+                        </select>
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label class="col-md-2">category</label>
                     {{-- <select> --}}
