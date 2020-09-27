@@ -1,4 +1,5 @@
-@charset "UTF-8";@import url(https://fonts.googleapis.com/css?family=Nunito);
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 
 
 /*!
@@ -1192,6 +1193,8 @@ pre code {
 
   .col-md-4 {
     flex: 0 0 33.3333333333%;
+    /* flex: 0 0 15%; */
+    /* max-width: 15%; */
     max-width: 33.3333333333%;
   }
 

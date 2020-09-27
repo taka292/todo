@@ -18,4 +18,11 @@ class Todos extends Model
     {
         return $this->hasMany('App\History');
     }
+
+    // Todosモデルに関連付けを行う
+    public function category()
+    {
+        // ○○_idをもった時点でbelongsTo
+        return $this->belongsTo('App\Category')->withDefault();
+    }
 }

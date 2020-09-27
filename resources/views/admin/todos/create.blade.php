@@ -11,6 +11,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>todo新規作成</h2>
+            {{-- {{$category}} --}}
             <form action="{{ action('Admin\TodosController@create') }}" method="post" enctype="multipart/form-data">
 
                 @if (count($errors) > 0)
@@ -26,22 +27,41 @@
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                     </div>
                 </div>
+
                 <div class="form-group row">
-                    <label class="col-md-2">いつまでに</label>
+                    <label class="col-md-2">いつまでに<br>(〇〇〇〇-〇〇-〇〇)</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="date" value="{{ old('date') }}">
+                        <input type="text" class="form-control" name="deadline_date" value="{{ old('deadline_date') }}">
                     </div>
                 </div>
-                {{-- <div class="form-group row">
-                    <label class="col-md-2">本文</label>
+                <div class="form-group row">
+                    <label class="col-md-2">優先度</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                        <input type="text" class="form-control" name="priority" value="{{ old('priority') }}">
                     </div>
-                </div> --}}
+                </div>
 
+                <div class="form-group row">
+                    <label class="col-md-2">category</label>
+                    {{-- <select> --}}
+                    <div class="col-md-10">
+                    <select class="form-control"  name="category_id">
+
+                        {{-- $indexと書いていたためにoption 要素内のテキストが出力さてなかった。 --}}
+                        {{-- @foreach($category_titles as $index => $category_title) --}}
+                        <option value="" selected>選択してください</option>
+                        @foreach($categories as $category)
+                        {{-- <option {{$index}}> --}}
+                        {{-- @if(old('category_title') === $category_title) selected @endif> --}}
+                        <option value="{{ $category->id }}">{{$category->title}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary" value="更新">
             </form>
+
         </div>
     </div>
 </div>

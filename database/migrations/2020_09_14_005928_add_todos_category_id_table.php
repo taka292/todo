@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeCreateTodosTable extends Migration
+class AddTodosCategoryIdTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class ChangeCreateTodosTable extends Migration
     {
         Schema::table('todos', function (Blueprint $table) {
             //
-            $table->string('date')->nullable()->change();
+            $table->Integer('category_id')->default(0);
         });
     }
 
@@ -28,7 +28,7 @@ class ChangeCreateTodosTable extends Migration
     {
         Schema::table('todos', function (Blueprint $table) {
             //
-            $table->dropColumn('date');  //カラムの削除
+            $table->dropColumn('category_id');  //カラムの削除
         });
     }
 }

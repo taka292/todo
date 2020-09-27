@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeCreateTodosTable extends Migration
+class AddColumnPriorityToTodosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,8 @@ class ChangeCreateTodosTable extends Migration
     {
         Schema::table('todos', function (Blueprint $table) {
             //
-            $table->string('date')->nullable()->change();
+            $table->INTEGER('priority')->default(0);
+
         });
     }
 
@@ -28,7 +29,7 @@ class ChangeCreateTodosTable extends Migration
     {
         Schema::table('todos', function (Blueprint $table) {
             //
-            $table->dropColumn('date');  //カラムの削除
+            $table->dropColumn('todos');  //カラムの削除
         });
     }
 }
