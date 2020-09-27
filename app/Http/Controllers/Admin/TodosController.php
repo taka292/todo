@@ -125,7 +125,7 @@ class TodosController extends Controller
         }
         // if ($category_title != '') {
         // }
-        // $todoQuery->orderBy('priority', 'desc');
+        $todoQuery->orderBy('priority', 'desc');
         $todos = $todoQuery->paginate(5);
 
         // dd($todos);
