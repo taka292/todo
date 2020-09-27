@@ -145,7 +145,32 @@ class TodosController extends Controller
     {
         $all_delete = Todos::where('is_complete', 1)->delete();
 
-        return view('admin.todos.index', [ 'all_delete' => $all_delete]);
+        // プログラム処理後にindexに戻りたいが、以下のコードがないとエラーになってしまう。
+        // もっと良いやり方があるはずだ。
+
+        $categories = Category::all();
+        $carbon1 = Carbon::now()->toDateString();
+
+        $todoQuery = Todos::where('is_complete', 0);
+        $cond_title = $request->cond_title;
+        $cond_category = $request->cond_category;
+
+        if ($cond_title != '') {
+            $todoQuery->where('title', $cond_title);
+            if ($cond_category != '') {
+                $todoQuery->where('category_id', $cond_category);
+            }
+
+        }
+
+        if ($cond_category) {
+            $todoQuery->where('category_id', $cond_category);
+        }
+
+        $todoQuery->orderBy('priority', 'desc');
+        $todos = $todoQuery->paginate(5);
+
+        return view('admin.todos.index', [ 'all_delete' => $all_delete,'todos' => $todos, 'cond_title' => $cond_title, 'cond_category' => $cond_category, 'carbon1' => $carbon1, 'categories' => $categories]);
     }
 
 
