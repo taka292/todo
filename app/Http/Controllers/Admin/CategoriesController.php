@@ -47,7 +47,6 @@ class CategoriesController extends Controller
           // それ以外はすべてのニュースを取得する
           $category_variation = Category::all();
       }
-    //   後でposts 編集
       return view('admin.category.index', ['categories' => $category_variation, 'cond_title' => $cond_title]);
 
 
@@ -78,7 +77,7 @@ class CategoriesController extends Controller
         // 該当するデータを上書きして保存する
         $category->fill($category_form)->save();
 
-        
+
 
         return redirect('admin/category');
     }
