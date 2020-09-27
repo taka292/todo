@@ -86,30 +86,6 @@ class TodosController extends Controller
         $cond_title = $request->cond_title;
         $cond_category = $request->cond_category;
 
-        //     $query = User::query();
-
-        // //$request->input()で検索時に入力した項目を取得します。
-        //     $search1 = $request->input('category_title');
-        //     // $search3 = $request->input('cond_title');
-
-        //     //  プルダウンメニューで指定なし以外を選択した場合、$query->whereで選択した棋力と一致するカラムを取得します
-        //     if ($request->has('category_title') && $search1 != ('指定なし')) {
-        //         $query->where('category_title', $search1)->get();
-        //     }
-
-        // // ユーザ名入力フォームで入力した文字列を含むカラムを取得します
-        // if ($request->has('cond_title') && $search3 != '') {
-        //     $query->where('cond_title', 'like', '%'.$search3.'%')->get();
-        // }
-
-        // //ユーザを1ページにつき10件ずつ表示させます
-        //     $data = $query->paginate(10);
-
-        // return view('users.search',[
-        //     'data' => $data
-        // ]);
-        // dd($request->category_id);
-        // dd($request->input("cond_title"));
         if ($cond_title != '') {
             $todoQuery->where('title', $cond_title);
             if ($cond_category != '') {
@@ -120,16 +96,14 @@ class TodosController extends Controller
             // $todoQuery->where('categorytitle', $cond_title);
 
         }
+
         if ($cond_category) {
             $todoQuery->where('category_id', $cond_category);
         }
-        // if ($category_title != '') {
-        // }
+
         $todoQuery->orderBy('priority', 'desc');
         $todos = $todoQuery->paginate(5);
 
-        // dd($todos);
-        // $list = Todos::orderBy('priority', 'desc')->get();
         return view('admin.todos.index', ['todos' => $todos, 'cond_title' => $cond_title, 'cond_category' => $cond_category, 'carbon1' => $carbon1, 'categories' => $categories]);
     }
     // {
