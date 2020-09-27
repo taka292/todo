@@ -20,7 +20,6 @@
                             <th width="40%">やること</th>
                             <th width="30%">いつまでに</th>
                             <th width="10%">操作</th>
-                            {{-- <th width="50%">本文</th> --}}
                         </tr>
                     </thead>
                     <tbody>

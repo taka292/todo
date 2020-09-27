@@ -31,30 +31,15 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2">category</label>
-                    {{-- <select> --}}
                     <div class="col-md-10">
                         <select class="form-control" name="cond_category">
-
-
                             <option value="" selected>選択してください</option>
                             @foreach($categories as $category)
-                            {{-- <option {{$index}}> --}}
-                            {{-- @if(old('category_title') === $category_title) selected @endif> --}}
                             <option value="{{ $category->id }}">{{$category->title}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                {{-- <div class="form-group row">
-                    <label class="col-md-2">category_title</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="category_title" value="{{ $category_title }}">
-                    </div>
-                    <div class="col-md-2">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-primary" value="検索">
-                    </div>
-                </div> --}}
             </form>
         </div>
     </div>
@@ -74,7 +59,6 @@
                             </th>
                             <th width="15%">category</th>
                             <th width="10%">操作</th>
-                            {{-- <th width="50%">本文</th> --}}
                         </tr>
                     </thead>
 
@@ -112,16 +96,7 @@
                             <th>{{ $todo->priority}}</th>
                             <td>{{ \Str::limit($todo->title, 100) }}</td>
                             <td>{{ \Str::limit($todo->deadline_date, 100) }}</td>
-                            {{-- {{}} --}}
-                            {{-- <td>{{ \Str::limit($categories->title = Categories::where('title',)$todo->category_id, 100) }}</td> --}}
-                            {{-- {{-- {{dd($categories->find($todo->category_id))}} --}}
-                            {{-- {{dd($categories->find($todo->category_id))}} --}}
-                            {{-- {{dd($todo->id)}} --}}
-                            {{-- {{dd($todo)}} --}}
                             <td>{{($todo->category->title)}}</td>
-                            {{-- <td>{{($categories->find($todo->category_id)->id)}}</td> --}}
-
-                            {{-- <td>{{ dd(\Str::limit($categories->find($todo->category_id), 300)) }}</td> --}}
                             <td>
                                 <div>
                                     <a href="{{ action('Admin\TodosController@edit', ['id' => $todo->id]) }}">編集</a>
@@ -135,17 +110,11 @@
 
                             </td>
                             </tr>
-
-
-
-                        {{-- @endif --}}
                         @endforeach
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-center">
                         {{ $todos->links() }}
-                        {{-- {{ $posts->appends(['todos' => $posts ])->links() }} --}}
-
                     </div>
 
                 </div>

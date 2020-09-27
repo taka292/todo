@@ -32,12 +32,19 @@
                         <input type="text" class="form-control" name="priority" value="{{ $todos_form->priority }}">
                     </div>
                 </div>
-                {{-- <div class="form-group row">
-                    <label class="col-md-2" for="body">本文</label>
+
+                <div class="form-group row">
+                    <label class="col-md-2">category</label>
+
                     <div class="col-md-10">
-                        <textarea class="form-control" name="body" rows="20">{{ $todos_form->body }}</textarea>
+                        <select class="form-control" name="category_id">
+                            <option value="" selected>選択してください</option>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{$category->title}}</option>
+                            @endforeach
+                        </select>
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="form-group row">
                     <div class="col-md-10">
