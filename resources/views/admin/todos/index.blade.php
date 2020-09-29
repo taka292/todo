@@ -66,7 +66,6 @@
                     </thead>
 
                     <tbody>
-
                         @foreach($todos as $todo)
                         {{-- 完了していないリストの作成 --}}
                         {{-- @if ($todos->is_complete == 0) --}}
@@ -82,44 +81,43 @@
                         $deadlineInterval = $interval->format('%a');
                         @endphp
 
-{{--期限と現在日時のチェック --}}
-@if($day1 < $day2)
-<tr style="background:#fffb00;color:#312b2b;opacity: 0.7;">
-    @elseif(0 <= $deadlineInterval && $deadlineInterval < 3)
-    <tr style="background:#e04733;color:#ffffff;opacity: 0.7;">
-        @elseif(3 <= $deadlineInterval && $deadlineInterval < 7)
-        <tr style="background: rgba(143, 252, 0, 0.801) ;color:#413d3d;">
-                            @else
-                            <tr>
-                                @endif
+                        {{--期限と現在日時のチェック --}}
+                        @if($day1 < $day2)
+                        <tr style="background:#fffb00;color:#312b2b;opacity: 0.7;">
+                            @elseif(0 <= $deadlineInterval && $deadlineInterval < 3)
+                            <tr style="background:#e04733;color:#ffffff;opacity: 0.7;">
+                                @elseif(3 <= $deadlineInterval && $deadlineInterval < 7)
+                                <tr style="background: rgba(143, 252, 0, 0.801) ;color:#413d3d;">
+                                    @else
+                                    <tr>
+                        @endif
 
-                            <th>{{ $todo->id }}</th>
-                            <th>{{ $todo->priority}}</th>
-                            <td>{{ \Str::limit($todo->title, 100) }}</td>
-                            <td>{{ \Str::limit($todo->deadline_date, 100) }}</td>
-                            <td>{{($todo->category->title)}}</td>
-                            <td>
-                                <div>
-                                    <a href="{{ action('Admin\TodosController@edit', ['id' => $todo->id]) }}">編集</a>
-                                </div>
-                                <div>
-                                    <a href="{{ action('Admin\TodosController@delete', ['id' => $todo->id]) }}">削除</a>
-                                </div>
-                                <div>
-                                    <a href="{{ action('Admin\TodosController@complete', ['id' => $todo->id]) }}">完了</a>
-                                </div>
-
-                            </td>
-                            </tr>
+                                    <th>{{ $todo->id }}</th>
+                                    <th>{{ $todo->priority}}</th>
+                                    <td>{{ \Str::limit($todo->title, 100) }}</td>
+                                    <td>{{ \Str::limit($todo->deadline_date, 100) }}</td>
+                                    <td>{{($todo->category->title)}}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\TodosController@edit', ['id' => $todo->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('Admin\TodosController@delete', ['id' => $todo->id]) }}">削除</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('Admin\TodosController@complete', ['id' => $todo->id]) }}">完了</a>
+                                        </div>
+                                    </td>
+                                </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
-                        {{ $todos->links() }}
-                    </div>
 
+                <div class="d-flex justify-content-center">
+                    {{ $todos->links() }}
                 </div>
+
             </div>
         </div>
-</div>
-@endsection
+    </div>
+    @endsection
