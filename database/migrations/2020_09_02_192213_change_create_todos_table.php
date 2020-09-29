@@ -15,7 +15,6 @@ class ChangeCreateTodosTable extends Migration
     {
         Schema::table('todos', function (Blueprint $table) {
             //
-            $table->string('date')->nullable()->change();
         });
     }
 
