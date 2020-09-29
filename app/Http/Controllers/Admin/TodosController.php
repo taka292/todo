@@ -8,7 +8,6 @@ use App\Todos;
 
 use App\History;
 use App\Category;
-
 use Carbon\Carbon;
 
 class TodosController extends Controller
@@ -62,6 +61,7 @@ class TodosController extends Controller
 
         $todoQuery->orderBy('priority', 'desc');
         $todos = $todoQuery->paginate(5);
+        // dd($todos);
 
         return view('admin.todos.index', ['todos' => $todos, 'cond_title' => $cond_title, 'cond_category' => $cond_category, 'carbon1' => $carbon1, 'categories' => $categories]);
     }
@@ -173,5 +173,24 @@ class TodosController extends Controller
         return view('admin.todos.index', [ 'all_delete' => $all_delete,'todos' => $todos, 'cond_title' => $cond_title, 'cond_category' => $cond_category, 'carbon1' => $carbon1, 'categories' => $categories]);
     }
 
+    public function get_carendar_dates($year, $month)
+    {
+        $dateStr = sprintf('%04d-%02d-01', $year, $month);
+        $date = new Carbon($dateStr);
+        // カレンダーを四角形にするため、前月となる左上の隙間用のデータを入れるためずらす
+        $date->subDay($date->dayOfWeek);
+        // 同上。右下の隙間のための計算。
+        $count = 31 + $date->dayOfWeek;
+        $count = ceil($count / 7) * 7;
+        $dates = [];
+
+        for ($i = 0; $i < $count; $i++, $date->addDay()) {
+            // copyしないと全部同じオブジェクトを入れてしまうことになる
+            $dates[] = $date->copy();
+        }
+        // return $dates;
+        return view('admin.todos.carender', ['dates' => $dates]);
+
+    }
 
 }

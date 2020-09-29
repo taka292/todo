@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('todos/complete_data', 'Admin\TodosController@complete_data')->middleware('auth');
     Route::get('todos/complete_data/edit', 'Admin\TodosController@complete_data_edit')->middleware('auth');
     Route::get('todos/complete_data/all_delete', 'Admin\TodosController@complete_data_delete')->middleware('auth');
+    Route::get('todos/carender', 'Admin\TodosController@get_carendar_dates')->middleware('auth');
 
 
 });

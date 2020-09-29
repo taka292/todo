@@ -29,9 +29,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-md-2">いつまでに<br>(〇〇〇〇-〇〇-〇〇)</label>
+                    <label class="col-md-2">いつまでに</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="deadline_date" value="{{ old('deadline_date') }}">
+                        <input type="date" class="form-control" name="deadline_date" value="{{ old('deadline_date') }}">
                     </div>
                 </div>
                 <div class="form-group row">
