@@ -23,8 +23,9 @@
                 <div class="form-group row">
                     <label class="col-md-2" for="date">いつまでに</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="deadline_date" value="{{ $todos_form->deadline_date }}">
+                        <input type="date" class="form-control" name="deadline_date" value="{{ $todos_form->deadline_date }}">
                     </div>
+ 
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2">優先度</label>

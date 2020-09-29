@@ -17,6 +17,9 @@
         <div class="col-md-4">
             <a href="{{ action('Admin\CategoriesController@index') }}" role="button" class="btn btn-primary">categorty一覧</a>
         </div>
+        {{-- <div class="col-md-4">
+            <input type="date">
+        </div> --}}
         <div class="col-md-8">
             <form action="{{ action('Admin\TodosController@index') }}" method="get">
                 <div class="form-group row">
@@ -65,8 +68,6 @@
                     <tbody>
 
                         @foreach($todos as $todo)
-                        {{-- $posts を $todos  後はtodo--}}
-
                         {{-- 完了していないリストの作成 --}}
                         {{-- @if ($todos->is_complete == 0) --}}
 
@@ -81,8 +82,8 @@
                         $deadlineInterval = $interval->format('%a');
                         @endphp
 
-{{--期限が過ぎているかのチェック --}}
-@if($deadlineInterval < 0)
+{{--期限と現在日時のチェック --}}
+@if($day1 < $day2)
 <tr style="background:#fffb00;color:#312b2b;opacity: 0.7;">
     @elseif(0 <= $deadlineInterval && $deadlineInterval < 3)
     <tr style="background:#e04733;color:#ffffff;opacity: 0.7;">
