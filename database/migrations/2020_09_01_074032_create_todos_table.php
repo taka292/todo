@@ -14,9 +14,8 @@ class CreateTodosTable extends Migration
     public function up()
     {
         Schema::create('todos', function (Blueprint $table) {
-            $table->id();
+            $table->id(); //idを1から連番にするためにはSET @i := 0;UPDATE テーブル名 SET カラム名 = (@i := @i +1);に指定する。
             $table->string('title'); // todoのタイトルを保存するカラム
-            $table->string('date'); // todoのdateを保存するカラム
             $table->timestamps();
             // $table->is_complete();
         });

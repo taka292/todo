@@ -16,10 +16,6 @@ class AddDeadlineDateTable extends Migration
         Schema::table('todos', function (Blueprint $table) {
             //
             $table->date('deadline_date')->default('2000-01-01');
-            $table->dateTime('now')->default('2000-01-01');
-
-
-            // ->default(false);
         });
     }
 
